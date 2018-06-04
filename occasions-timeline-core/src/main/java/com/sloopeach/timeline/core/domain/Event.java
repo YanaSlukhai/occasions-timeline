@@ -12,7 +12,17 @@ public class Event {
     private String description;
     private LocalDateTime date;
 
+    public Event() {
+    }
+
     public Event(String name, String description, LocalDateTime date) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+    }
+
+    public Event(Integer id, String name, String description, LocalDateTime date) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;

@@ -39,11 +39,21 @@ public class EventDAOMySQL implements EventDAO{
     }
 
     public Event getByID(Integer id) {
-        String sql = "SELECT EVENT.ID, EVENT.NAME, EVENT.DATE,  USER.DESCRIPTION "
+        String sql = "SELECT EVENT.ID, EVENT.NAME, EVENT.DATE, EVENT.DESCRIPTION "
                 +    "FROM EVENT WHERE EVENT.ID = ? ";
 
         Event event =  (Event)jdbcTemplate.queryForObject(
-                sql, new Object[]{id}, new BeanPropertyRowMapper<Event>());
+                sql, new Object[]{id}, new BeanPropertyRowMapper(Event.class));
+
+        return event;
+    }
+
+    public Event getByName(String name) {
+        String sql = "SELECT EVENT.ID, EVENT.NAME, EVENT.DATE, EVENT.DESCRIPTION "
+                +    "FROM EVENT WHERE EVENT.NAME = ? ";
+
+        Event event =  (Event)jdbcTemplate.queryForObject(
+                sql, new Object[]{name}, new BeanPropertyRowMapper(Event.class));
 
         return event;
     }
